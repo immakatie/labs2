@@ -1,0 +1,1004 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Численные методы</title>
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/white.css" id="theme">
+        <!-- <link rel="stylesheet" href="custom.css"> -->
+        <script type="text/javascript" src="js/main.js"></script>
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme">
+
+        <style>
+            .left {
+                float: left;
+            }
+            .right {
+                float: right;
+            }
+            .clear {
+                clear: both;
+            }
+
+            #small-text
+            {
+                font-size: 30%; color: dimgray;
+            }
+
+            #butCramer3 {
+                width: 20%; height: 60%; background-color: aliceblue; font-size: 15pt;
+            }
+
+            #butCramer4 {
+                width: 20%; height: 60%; background-color: aliceblue; font-size: 15pt;
+            }
+
+            #butJacobi {
+                width: 20%; height: 60%; background-color: aliceblue; font-size: 15pt;
+            }
+
+            #butGauss {
+                width: 20%; height: 60%; background-color: aliceblue; font-size: 15pt;
+            }
+
+            #fontsize
+        {
+            font-size: 70%;
+        }
+
+            #fontsizedelta
+        {
+            font-size: 55%;
+        }
+
+        </style>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section data-markdown class="center">
+                    <script type="text/template">
+                        Численные методы
+                        ======
+                    </script>
+                </section>
+
+                    <section data-markdown>
+                    <script type="text/template">
+                        ## Численные методы
+                        Численные методы — раздел вычислительной математики, изучающий приближенные способы решения типовых математических задач, которые либо не решаются, либо трудно решаются точными аналитическими методами.
+                    </script>
+                </section>
+
+
+                <section data-markdown class="center">
+                    <script type="text/template">
+                        ## СЛАУ
+                    </script>
+                </section>
+
+                <section data-markdown>
+                    <script type="text/template">
+                        ### СЛАУ
+                        Система линейных алгебраических уравнений — система уравнений, каждое уравнение в которой является линейным — алгебраическим уравнением первой степени.
+                    </script>
+                </section>
+
+                <section data-markdown class="center">
+                    <script type="text/template">
+                        ## Методы решения СЛАУ
+                    </script>
+                </section>
+
+                <section data-markdown class="center">
+                    <script type="text/template">
+                        ## Метод Крамера
+                    </script>
+                </section>
+
+                <section data-markdown>
+                    <script type="text/template">
+                    ### Метод Крамера
+                    Метод Крамера предназначен для того, чтобы решать СЛАУ, в которых число неизвестных переменных равняется числу уравнений, а определитель основной матрицы не равен нулю.
+                    </script>
+                </section>
+
+                <section data-markdown id="fontsize">
+                    <script type="text/template">
+                        ### Метод Крамера
+                        Алгоритм решения СЛАУ методом Крамера:
+                        1. Необходимо вычислить определитель матрицы системы и убедиться, что он не равен нулю.
+                        2. Найти определители:
+                        <p>$\Delta x_{1} = \begin{vmatrix} b_{1} & a_{12} & \ldots & a_{1n}\\ b_{2} & a_{22} & \ldots & a_{2n}\\ \vdots & \vdots & \ddots & \vdots \\b_{n} & a_{n2} & \ldots & a_{nn} \end{vmatrix}, \Delta x_{n} = \begin{vmatrix} a_{11} & a_{12} & \ldots & b_{1}\\ a_{21} & a_{22} & \ldots & b_{2}\\ \vdots & \vdots & \ddots & \vdots \\a_{n1} & a_{n2} & \ldots & b_{n}\end{vmatrix}$</p>
+                        Тогда ответ будет иметь вид:
+                        $x_{n} = \frac{\Delta x_{n}}{\Delta x}$
+                    </script>
+                </section>
+                
+                <section data-markdown class="center">
+                    <script type="text/template">
+                        ### Пример
+                    </script>
+                </section>
+
+                <section data-markdown id="fontsize">
+                    <script type="text/template">
+                        ### Пример
+                        $$
+                        \begin{cases} 
+                       3x_{1} - 2x_{2} + 4x_{3} = 11\\
+                       \newline
+                       2x_{1} - x_{2} - x_{3} = 4\\
+                       \newline
+                       3x_{1} + 4x_{2} - 2x_{3} = 11
+                       \end{cases}
+                       $$
+                        $$
+                        \Delta = \begin{vmatrix}
+                        3 & -2 & 4\\
+                        \newline
+                        2 & -1 & -1\\ 
+                        \newline
+                        3 & 4 & -2
+                        \end{vmatrix} = 60,
+                        \Delta_{1} = \begin{vmatrix}
+                        11 & -2 & 4\\
+                        \newline
+                        4 & -1 & -1\\ 
+                        \newline
+                        11 & 4 & -2
+                        \end{vmatrix} = 180,
+                        $$
+                        $$
+                        \Delta_{2} = \begin{vmatrix}
+                        3 & 11 & 4\\
+                        \newline
+                        2 & 4 & -1\\ 
+                        \newline
+                        3 & 11 & -2
+                        \end{vmatrix} = 60,
+                        \Delta_{3} = \begin{vmatrix}
+                        3 & -2 & 11\\
+                        \newline
+                        2 & -1 & 4\\ 
+                        \newline
+                        3 & 4 & 11
+                        \end{vmatrix} = 60,
+                        $$
+                        $x_{1} = \frac{180}{60} = 3, x_{2} = \frac{60}{60} = 1, x_{3} = \frac{60}{60} = 1$
+                    </script>
+                </section>
+
+
+                <section data-markdown>  
+                    <script type="text/template">
+                        #### Решение СЛАУ методом Крамера
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td align = "center">
+                                        Матрица A
+                                        <table>
+                                            <tbody>
+                                                <tr><td><input type="text" name="c11" id="c11" value="0"></td>
+                                                <td><input type="text" name="c12" id="c12" value="0"></td>
+                                                <td><input type="text" name="c13" id="c13" value="0"></td>
+                                                </tr>
+                                                <tr>
+                                                <td><input type="text" name="c21" id="c21" value="0"></td>
+                                                <td><input type="text" name="c22" id="c22" value="0"></td>
+                                                <td><input type="text" name="c23" id="c23" value="0"></td>
+                                                </tr>
+                                                <tr>
+                                                <td><input type="text" name="c31" id="c31" value="0"></td>
+                                                <td><input type="text" name="c32" id="c32" value="0"></td>
+                                                <td><input type="text" name="c33" id="c33" value="0"></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                    <td align = "center">
+                                        Матрица B
+                                        <table>
+                                            <tbody>
+                                                <tr><td><input type="text" name="d1" id="d1" value="0"></td></tr>
+                                                <tr><td><input type="text" name="d2" id="d2" value="0"></td></tr>
+                                                <tr><td><input type="text" name="d3" id="d3" value="0"></td></tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    <input type="button" id="butCramer3" value="Посчитать"><br>
+                    <label for ="Cramer3"><br><b>Ответ:</b></label>
+                    <output type="text" name="Cramer31" id="Cramer31"></output>
+                    <output type="text" name="Cramer32" id="Cramer32"></output>
+                    <output type="text" name="Cramer33" id="Cramer33"></output>
+
+                    </script>
+                </section>
+
+                <section data-markdown>
+                    <script type="text/template">
+                        #### Код программы
+                        ```
+                        window.onload = () => {
+                            document.querySelector('#butCramer3').onclick = () => {
+                                let c11 = document.querySelector("#c11");
+                                let c12 = document.querySelector("#c12");
+                                let c13 = document.querySelector("#c13");
+                                let c21 = document.querySelector("#c21");
+                                let c22 = document.querySelector("#c22");
+                                let c23 = document.querySelector("#c23");
+                                let c31 = document.querySelector("#c31");
+                                let c32 = document.querySelector("#c32");
+                                let c33 = document.querySelector("#c33");
+                                let d1 = document.querySelector("#d1");
+                                let d2 = document.querySelector("#d2");
+                                let d3 = document.querySelector("#d3");
+            
+                                let Cramer31 = document.querySelector('#Cramer31');
+                                let Cramer32 = document.querySelector('#Cramer32');
+                                let Cramer33 = document.querySelector('#Cramer33');
+            
+                                let X1 = (d1.value*c22.value*c33.value+c12.value*c23.value*d3.value+d2.value*c32.value*c13.value-c13.value*c22.value*d3.value-d2.value*c12.value*c33.value-c11.value*c23.value*c32.value) / (c11.value*c22.value*c33.value+c12.value*c23.value*c31.value+c21.value*c32.value*c13.value-c13.value*c22.value*c31.value-c21.value*c12.value*c33.value-c23.value*c32.value*c11.value);
+                                let X2 = (c11.value*d2.value*c33.value+d1.value*c23.value*c31.value+c21.value*d3.value*c13.value-c13.value*d2.value*c31.value-c21.value*d1.value*c33.value-c23.value*d3.value*c11.value) / (c11.value*c22.value*c33.value+c12.value*c23.value*c31.value+c21.value*c32.value*c13.value-c13.value*c22.value*c31.value-c21.value*c12.value*c33.value-c23.value*c32.value*c11.value);
+                                let X3 = (c11.value*c22.value*d3.value+c12.value*d2.value*c31.value+c21.value*c32.value*d1.value-d1.value*c22.value*c31.value-c21.value*c12.value*d3.value-c32.value*d2.value*c11.value) / (c11.value*c22.value*c33.value+c12.value*c23.value*c31.value+c21.value*c32.value*c13.value-c13.value*c22.value*c31.value-c21.value*c12.value*c33.value-c23.value*c32.value*c11.value);
+            
+                                Cramer31.innerHTML = katex.renderToString('x_{1} = '+X1.toFixed(0)+';');
+                                Cramer32.innerHTML = katex.renderToString('x_{2} = '+X2.toFixed(0)+';');
+                                Cramer33.innerHTML = katex.renderToString('x_{3} = '+X3.toFixed(0)+';');
+                            }
+                        }
+                        ```
+                    </script>
+                </section>
+
+                <section data-markdown id="fontsize">
+                    <script type="text/template">
+                        ### Решение СЛАУ методом Крамера
+                        <label>Введите коэффициенты матрицы A</label><br>
+                        <input id="a11" value="0"/><input id="a12" value="0"/><input id="a13" value="0"/><input id="a14" value="0"><br>
+                        <input id="a21" value="0"/><input id="a22" value="0"/><input id="a23" value="0"/><input id="a24" value="0"><br>
+                        <input id="a31" value="0"/><input id="a32" value="0"/><input id="a33" value="0"/><input id="a34" value="0"><br>
+                        <input id="a41" value="0"/><input id="a42" value="0"/><input id="a43" value="0"/><input id="a44" value="0"><br>
+                        <label>Введите коэффициенты матрицы B</label><br>
+                        <input id="b1" value="0"/><br>
+                        <input id="b2" value="0"/><br>
+                        <input id="b3" value="0"/><br>
+                        <input id="b4" value="0"/><br>
+                        <input type="button" id="butCramer4" value="Посчитать"><br>
+                        <label for ="Cramer4"><br><b>Ответ:</b></label>
+                        <output type="text" name="Cramer41" id="Cramer41"></output>
+                        <output type="text" name="Cramer42" id="Cramer42"></output>
+                        <output type="text" name="Cramer43" id="Cramer43"></output>
+                        <output type="text" name="Cramer44" id="Cramer44"></output>
+                    </script>
+                </section>
+
+                <section data-markdown class="center">
+                    <script type="text/template">
+                        #### Код программы
+                        ```
+                        window.onload = () => {
+                        document.querySelector('#butCramer4').onclick = () => {
+                            let a11 = document.querySelector("#a11");
+                            let a12 = document.querySelector("#a12");
+                            let a13 = document.querySelector("#a13");
+                            let a14 = document.querySelector("#a14");
+                            let a21 = document.querySelector("#a21");
+                            let a22 = document.querySelector("#a22");
+                            let a23 = document.querySelector("#a23");
+                            let a24 = document.querySelector("#a24");
+                            let a31 = document.querySelector("#a31");
+                            let a32 = document.querySelector("#a32");
+                            let a33 = document.querySelector("#a33");
+                            let a34 = document.querySelector("#a34");
+                            let a41 = document.querySelector("#a41");
+                            let a42 = document.querySelector("#a42");
+                            let a43 = document.querySelector("#a43");
+                            let a44 = document.querySelector("#a44");
+                            let b1 = document.querySelector("#b1");
+                            let b2 = document.querySelector("#b2");
+                            let b3 = document.querySelector("#b3");
+                            let b4 = document.querySelector("#b4");
+        
+                            let Cramer41 = document.querySelector('#Cramer41');
+                            let Cramer42 = document.querySelector('#Cramer42');
+                            let Cramer43 = document.querySelector('#Cramer43');
+                            let Cramer44 = document.querySelector('#Cramer44');
+        
+                            let Y1 = (b1.value*(a22.value*a33.value*a44.value+a24.value*a32.value*a43.value+a42.value*a23.value*a34.value-a24.value*a33.value*a42.value-a22.value*a34.value*a43.value-a44.value*a23.value*a32.value)-a12.value*(b2.value*a33.value*a44.value+a24.value*b3.value*a43.value+b4.value*a23.value*a34.value-a24.value*a33.value*b4.value-b2.value*a34.value*a43.value-a44.value*a23.value*b3.value)+a13.value*(b2.value*a32.value*a44.value+a24.value*b3.value*a42.value+b4.value*a22.value*a34.value-a24.value*a32.value*b4.value-b2.value*a34.value*a42.value-a44.value*b3.value*a22.value)-a14.value*(b2.value*a32.value*a43.value+a23.value*b3.value*a42.value+b4.value*a22.value*a33.value-a23.value*a32.value*b4.value-b2.value*a42.value*a33.value-a43.value*b3.value*a22.value)) / (a11.value*(a22.value*a33.value*a44.value+a24.value*a32.value*a43.value+a42.value*a23.value*a34.value-a24.value*a33.value*a42.value-a22.value*a34.value*a43.value-a44.value*a23.value*a32.value)-a12.value*(a21.value*a33.value*a44.value+a24.value*a31.value*a43.value+a41.value*a23.value*a34.value-a24.value*a33.value*a41.value-a21.value*a34.value*a43.value-a44.value*a23.value*a31.value)+a13.value*(a21.value*a32.value*a44.value+a24.value*a31.value*a42.value+a41.value*a22.value*a34.value-a24.value*a32.value*a41.value-a21.value*a34.value*a42.value-a44.value*a22.value*a31.value)-a14.value*(a21.value*a32.value*a43.value+a23.value*a31.value*a42.value+a41.value*a22.value*a33.value-a23.value*a32.value*a41.value-a21.value*a33.value*a42.value-a43.value*a22.value*a31.value));
+                            let Y2 = (a11.value*(b2.value*a33.value*a44.value+a24.value*b3.value*a43.value+b4.value*a23.value*a34.value-a24.value*a33.value*b4.value-b2.value*a34.value*a43.value-a44.value*a23.value*b3.value)-b1.value*(a21.value*a33.value*a44.value+a24.value*a31.value*a43.value+a41.value*a23.value*a34.value-a24.value*a33.value*a41.value-a21.value*a34.value*a43.value-a44.value*a23.value*a31.value)+a13.value*(a21.value*b3.value*a44.value+a24.value*a31.value*b4.value+a41.value*b2.value*a34.value-a24.value*b3.value*a41.value-a21.value*a34.value*b4.value-a44.value*b2.value*a31.value)-a14.value*(a21.value*b3.value*a43.value+a23.value*a31.value*b4.value+a41.value*b2.value*a33.value-a23.value*b3.value*a41.value-a21.value*a33.value*b4.value-a43.value*b2.value*a31.value)) / (a11.value*(a22.value*a33.value*a44.value+a24.value*a32.value*a43.value+a42.value*a23.value*a34.value-a24.value*a33.value*a42.value-a22.value*a34.value*a43.value-a44.value*a23.value*a32.value)-a12.value*(a21.value*a33.value*a44.value+a24.value*a31.value*a43.value+a41.value*a23.value*a34.value-a24.value*a33.value*a41.value-a21.value*a34.value*a43.value-a44.value*a23.value*a31.value)+a13.value*(a21.value*a32.value*a44.value+a24.value*a31.value*a42.value+a41.value*a22.value*a34.value-a24.value*a32.value*a41.value-a21.value*a34.value*a42.value-a44.value*a22.value*a31.value)-a14.value*(a21.value*a32.value*a43.value+a23.value*a31.value*a42.value+a41.value*a22.value*a33.value-a23.value*a32.value*a41.value-a21.value*a33.value*a42.value-a43.value*a22.value*a31.value));
+                            let Y3 = (a11.value*(a22.value*b3.value*a44.value+a24.value*a32.value*b4.value+a42.value*b2.value*a34.value-a24.value*b3.value*a42.value-a22.value*a34.value*b4.value-a44.value*b2.value*a32.value)-a12.value*(a21.value*b3.value*a44.value+a24.value*a31.value*b4.value+a41.value*b2.value*a34.value-a24.value*b3.value*a41.value-a21.value*a34.value*b4.value-a44.value*b2.value*a31.value)+b1.value*(a21.value*a32.value*a44.value+a24.value*a31.value*a42.value+a41.value*a22.value*a34.value-a24.value*a32.value*a41.value-a21.value*a34.value*a42.value-a44.value*a22.value*a31.value)-a14.value*(a21.value*a32.value*b4.value+b2.value*a31.value*a42.value+a41.value*a22.value*b3.value-b2.value*a32.value*a41.value-a21.value*b3.value*a42.value-b4.value*a22.value*a31.value)) / (a11.value*(a22.value*a33.value*a44.value+a24.value*a32.value*a43.value+a42.value*a23.value*a34.value-a24.value*a33.value*a42.value-a22.value*a34.value*a43.value-a44.value*a23.value*a32.value)-a12.value*(a21.value*a33.value*a44.value+a24.value*a31.value*a43.value+a41.value*a23.value*a34.value-a24.value*a33.value*a41.value-a21.value*a34.value*a43.value-a44.value*a23.value*a31.value)+a13.value*(a21.value*a32.value*a44.value+a24.value*a31.value*a42.value+a41.value*a22.value*a34.value-a24.value*a32.value*a41.value-a21.value*a34.value*a42.value-a44.value*a22.value*a31.value)-a14.value*(a21.value*a32.value*a43.value+a23.value*a31.value*a42.value+a41.value*a22.value*a33.value-a23.value*a32.value*a41.value-a21.value*a33.value*a42.value-a43.value*a22.value*a31.value));
+                            let Y4 = (a11.value*(a22.value*a33.value*b4.value+b2.value*a32.value*a43.value+a42.value*a23.value*b3.value-b2.value*a33.value*a42.value-a22.value*b3.value*a43.value-b4.value*a23.value*a32.value)-a12.value*(a21.value*a33.value*b4.value+b2.value*a31.value*a43.value+a41.value*a23.value*b3.value-b2.value*a33.value*a41.value-a21.value*b3.value*a43.value-b4.value*a23.value*a31.value)+a13.value*(a21.value*a32.value*b4.value+b2.value*a31.value*a42.value+a41.value*a22.value*b3.value-b2.value*a32.value*a41.value-a21.value*b3.value*a42.value-b4.value*a22.value*a31.value)-b1.value*(a21.value*a32.value*a43.value+a23.value*a31.value*a42.value+a41.value*a22.value*a33.value-a23.value*a32.value*a41.value-a21.value*a33.value*a42.value-a43.value*a22.value*a31.value)) / (a11.value*(a22.value*a33.value*a44.value+a24.value*a32.value*a43.value+a42.value*a23.value*a34.value-a24.value*a33.value*a42.value-a22.value*a34.value*a43.value-a44.value*a23.value*a32.value)-a12.value*(a21.value*a33.value*a44.value+a24.value*a31.value*a43.value+a41.value*a23.value*a34.value-a24.value*a33.value*a41.value-a21.value*a34.value*a43.value-a44.value*a23.value*a31.value)+a13.value*(a21.value*a32.value*a44.value+a24.value*a31.value*a42.value+a41.value*a22.value*a34.value-a24.value*a32.value*a41.value-a21.value*a34.value*a42.value-a44.value*a22.value*a31.value)-a14.value*(a21.value*a32.value*a43.value+a23.value*a31.value*a42.value+a41.value*a22.value*a33.value-a23.value*a32.value*a41.value-a21.value*a33.value*a42.value-a43.value*a22.value*a31.value));
+        
+                            Cramer41.innerHTML = katex.renderToString('x_{1} = '+Y1.toFixed(0)+';');
+                            Cramer42.innerHTML = katex.renderToString('x_{2} = '+Y2.toFixed(0)+';');
+                            Cramer43.innerHTML = katex.renderToString('x_{3} = '+Y3.toFixed(0)+';');
+                            Cramer44.innerHTML = katex.renderToString('x_{4} = '+Y4.toFixed(0)+';');
+                        }
+                    }
+                        ```
+                    </script>
+                </section>
+                
+                <section data-markdown class="center">
+                    <script type="text/template">
+                        ### Метод Гаусса
+                    </script>
+                </section>
+
+                <section data-markdown id="fontsize">
+                    <script type="text/template">
+                        ### Метод Гаусса
+                        <p>Преобразование с помощью метода Гаусса заключается в совершении небольших (элементарных) последовательных изменениях системы линейных алгебраических уравнений, приводящих к исключению переменных из неё сверху вниз с образованием новой треугольной системы уравнений, являющейся равносильной исходной.</p>
+                        <p>Эта часть решения носит название прямого хода решения Гаусса, так как весь процесс осуществляется сверху вниз.</p>
+                    </script>
+                </section>
+
+                <section data-markdown id="fontsize">
+                    <script type="text/template">
+                        ### Метод Гаусса
+                        <p>После приведения исходной системы уравнений к треугольной осуществляется нахождение всех переменных системы снизу вверх (то есть первые найденные переменные находятся именно на последних строчках системы или матрицы).</p>
+                        <p>Эта часть решения известна также как обратный ход решения методом Гаусса.</p>
+                        <p>Заключается его алгоритм в следующем: сначала вычисляется переменные, находящиеся ближе всего к низу системы уравнений или матрицы, затем полученные значения подставляются выше и таким образом находится ещё одна переменная и так далее.</p>
+                    </script>
+                </section>
+
+                <section data-markdown id="fontsize">
+                    <script type="text/template">
+                        ### Метод Гаусса
+                        <p>Последовательность действий для общего решения системы уравнения методом Гаусса заключается в поочередном применении прямого и обратного хода к матрице на основе СЛАУ.
+                        Пусть исходная система уравнений имеет следующий вид:</p>
+                        <p>$\begin{cases} a_{11} \cdot x_1 +...+ a_{1n} \cdot x_n = b_1 \\ ... \\ a_{m1} \cdot x_1 + a_{mn} \cdot x_n = b_m \end{cases}$</p>
+                    </script>
+                </section>
+
+                <section data-markdown id="fontsizedelta">
+                    <script type="text/template">
+                        ## Метод Гаусса
+                        <p>Чтобы решить СЛАУ методом Гаусса, необходимо записать исходную систему уравнений в виде матрицы:</p>
+                        <p>$A = \begin{pmatrix} a_{11} & \ldots & a_{1n} \\ \vdots & \ddots & \vdots \\ a_{m1} & \ldots & a_{mn} \end{pmatrix}$, $b=\begin{pmatrix} b_1 \\ \vdots \\ b_m \end{pmatrix}$</p><p>Матрица $A$ называется основной матрицей и представляет собой записанные по порядку коэффициенты при переменных, а $b$ называется столбцом её свободных членов .
+                        Матрица $A$, записанная через черту со столбцом свободных членов называется расширенной матрицей:</p>
+                        <p>$A = \begin{array}{ccc|c} a_{11} & \ldots & a_{1n} & b_1 \\ \vdots & \ddots & \vdots & \vdots \\ a_{m1} & \ldots & a_{mn} & b_m \end{array}$</p>
+                    </script>
+                </section>
+
+                <section data-markdown id="fontsizedelta">
+                    <script type="text/template">
+                        ## Метод Гаусса
+                        <p>Теперь необходимо с помощью элементарных преобразований над системой уравнений (или над матрицей, так как это удобнее) привести её к следующему виду:</p>
+                        <p>$\begin{cases} α_{1j_{1}} \cdot x_{j_{1}} + α_{1j_{2}} \cdot x_{j_{2}} + ... + α_{1j_{r}} \cdot x_{j_{r}} + ... + α_{1j_{n}} \cdot x_{j_{n}} = β_1 \\ α_{2j_{2}} \cdot x_{j_{2}} + ... + α_{2j_{r}} \cdot x_{j_{r}} + ... + α_{2j_{n}} \cdot x_{j_{n}} = β_2 \\ ...\\ α_{rj_{r}} \cdot x_{j_{r}} + ... + α_{rj_{n}} \cdot x_{j_{n}} = β_r \\ 0 = β_(r+1) \\ ... \\ 0 = β_m \end{cases}$</p>
+                        <p>Матрица, полученная из коэффициентов преобразованной системы уравнения называется ступенчатой.</p>
+                        <p>После получения ступенчатой матрицы необходимо подставить полученные переменные в оставшиеся уравнения (начиная с конца) и получить оставшиеся значения переменных.</p>
+                    </script>
+                </section>
+
+                <section data-markdown class="center">
+                    <script type="text/template">
+                        ### Пример
+                    </script>
+                </section>
+
+                <section data-markdown id="fontsize">
+                    <script type="text/template">
+                        ### Пример
+                        $\begin{cases}
+                        4x_1 + 2x_2 - x_3 = 1 \\
+                        \newline
+                        5x_1 + 3x_2 - 2x_3 = 2\\
+                        \newline
+                        3x_1 + 2x_2 - 3x_3 = 0
+                        \newline
+                        \end{cases}$
+                        <p>Запишем нашу систему в виде расширенной матрицы:</p>
+                        <p>$\begin{array}{ccc|c} 4 & 2 & -1 & 1 \\ 5 & 3 & -2 & 2 \\ 3 & 2 & -3 & 0\\ \end{array}$</p>
+                        Теперь для удобства и практичности нужно преобразовать матрицу так, чтобы в верхнем углу крайнего столбца была $1$.
+                    </script>
+                </section>
+
+                <section data-markdown id="fontsizedelta">
+                    <script type="text/template">
+                        ## Пример
+                        <p>Для этого к 1-ой строчке прибавляем строчку из середины, умноженную на $-1$, а саму среднюю строчку записываем как есть, выходит:</p>
+                        <p>$\begin{array}{ccc|c} -1 & -1 & 1 & -1 \\ 5 & 3 & -2 & 2 \\ 3 & 2 & -3 & 0\\ \end{array}$</p>
+                        <p>Далее к средней строчке прибавим верхнюю, умноженную на $5$, а последнюю строчку преобразуем, умножив первую строчку на $3$ и сложив с последней, получаем:</p>
+                        $\begin{array}{ccc|c} -1 & -1 & 1 & -1 \\ 0 & -2 & 3 & -3 \\ 0 & -1 & 0 & -3\\ \end{array}$
+                    </script>
+                </section>
+
+                <section data-markdown id="fontsizedelta">
+                    <script type="text/template">
+                        ### Пример
+                        <p>Домножим верхнюю и последнюю строчки на $-1$, а также поменяем местами последнюю и среднюю строки:</p>
+                        <p>$\begin{array}{ccc|c} 1 & 1 & -1 & 1 \\ 0 & 1 & 0 & 3 \\ 0 & -2 & 3 & -3\\ \end{array}$</p>
+                        <p>Далее сложим последнюю строчку с удвоенной средней:</p>
+                        <p>$\begin{array}{ccc|c} 1 & 1 & -1 & 1 \\ 0 & 1 & 0 & 3 \\ 0 & 0 & 3 & 3\\ \end{array}$</p>
+                        <p>И разделим последнюю строчку на $3$:</p>
+                        <p>$\begin{array}{ccc|c} 1 & 1 & -1 & 1 \\ 0 & 1 & 0 & 3 \\ 0 & 0 & 1 & 1\\ \end{array}$</p>
+                    </script>
+                </section>
+
+                <section data-markdown id="fontsize">
+                    <script type="text/template">
+                        ### Пример
+                        <p>Получаем следующую систему уравнений, равносильную исходной:</p>
+                        <p>$\begin{cases} x_1 + x_2 - x_3 = 1\\ x_2 = 3 \\ x_3 = 1 \end{cases}$</p>
+                        <p>Из верхнего уравнения выражаем $x_1$:</p>
+                        <p>$x1 = 1 + x_3 - x_2 = 1 + 1 - 3 = -1$.</p>
+                        <p><b>Ответ:</b> $x_1 = -1, x_2 = 3, x_3 = 1$</p>
+                    </script>
+                </section>
+
+                <section data-markdown id="fontsize">
+                    <script type="text/template">
+                    ### Решение СЛАУ с тремя неизвестными методом Гаусса
+                    <label>Введите коэффициенты матрицы A</label><br>
+                    <input id="g11" value="0"><input id="g12" value="0"><input id="g13" value="0"><br>
+                    <input id="g21" value="0"><input id="g22" value="0"><input id="g23" value="0"><br>
+                    <input id="g31" value="0"><input id="g32" value="0"><input id="g33" value="0"><br>
+                    <label>Введите коэффициенты матрицы B</label><br>
+                    <input id="h1" value="0"><br><input id="h2" value="0"><br><input id="h3" value="0"><br>
+                    <input type="button" id="butGauss" value="Посчитать"><br>
+                    <label for ="Gauss"><br><b>Ответ:</b></label>
+                    <output type="text" name="Gauss1" id="Gauss1"></output>
+                        <output type="text" name="Gauss2" id="Gauss2"></output>
+                        <output type="text" name="Gauss3" id="Gauss3"></output>
+                    </script>
+                </section>
+
+                <section data-markdown class="center">
+                    <script type="text/template">
+                        ### Код программы
+                        ```
+                        window.onload = () => {
+                        document.querySelector('#butGauss').onclick = () => {
+                            let g11 = document.querySelector("#g11");
+                            let g12 = document.querySelector("#g12");
+                            let g13 = document.querySelector("#g13");
+                            let g21 = document.querySelector("#g21");
+                            let g22 = document.querySelector("#g22");
+                            let g23 = document.querySelector("#g23");
+                            let g31 = document.querySelector("#g31");
+                            let g32 = document.querySelector("#g32");
+                            let g33 = document.querySelector("#g33");
+                            let h1 = document.querySelector("#h1");
+                            let h2 = document.querySelector("#h2");
+                            let h3 = document.querySelector("#h3");
+                                
+                            let Gauss1 = document.querySelector('#Gauss1');
+                            let Gauss2 = document.querySelector('#Gauss2');
+                            let Gauss3 = document.querySelector('#Gauss3');
+            
+                                n=3;
+                                var m=new Array(n);
+                                var l=new Array(n);
+                                var i, j, k;
+                                for(i = 0; i < n; ++i)
+                                {
+                                    m[i] = new Array(3);
+                                    l[i] = new Array(3);
+                                }
+                                
+                                m = [[g11.value, g12.value,g13.value, h1.value],[g21.value, g22.value, g23.value, h2.value],[g31.value, g32.value, g33.value, h3.value]];
+            
+                                for(iter_item = 0; iter_item < (n-1); iter_item++)
+                                    {
+                                        if (m[iter_item][iter_item] == 0)
+                                        {
+                                            for(i = iter_item + 1; i < n; i++)
+                                            {
+                                                if(m[i][iter_item] !== 0)
+                                                    {
+                                                        for(j = 0; j <= n; j++)
+                                                            {
+                                                                k = m[i-1][j];
+                                                                m[i-1][j] = m[i][j];
+                                                                m[i][j] = k;
+                                                            }
+                                                    } 
+                                            }
+                                        }
+                                        for(j = n; j >= iter_item; j--)
+                                        {
+                                            m[iter_item][j] /= m[iter_item][iter_item];
+                                        }
+                                        for(i = iter_item + 1; i < n; i++)
+                                        {
+                                            for(j = n; j >= iter_item; j--)
+                                                {
+                                                 m[i][j] -= m[iter_item][j] * m[i][iter_item];
+                                                }
+                                        }
+                                    }
+            
+                                    for(i = iter_item + 1; i < n; i++)
+                                        {
+                                            if(m[i][iter_item] !== 0)
+                                                {
+                                                    for(j = 0; j <= n; j++)
+                                                        {
+                                                            k = m[i-1][j];
+                                                            m[i-1][j] = m[i][j];
+                                                            m[i][j] = k;
+                                                        }
+                                                } 
+                                        }
+                                    l[n-1] = m[n-1][n]/m[n-1][n-1];
+                                    for(i = n - 2; i >= 0; i--)
+                                        {
+                                            k=0;
+                                            for(j = n - 1; j > i; j--)
+                                                {
+                                                    k = (m[i][j]*l[j]) + k;
+                                                }
+                                            l[i] = m[i][n] - k;
+                                        }
+                                    for(i = n; i > 0; i--)
+                                        {
+                                            Gauss1.innerHTML = katex.renderToString('x_{1} = '+l[0].toFixed(0)+';');
+                                            Gauss2.innerHTML = katex.renderToString('x_{2} = '+l[1].toFixed(0)+';');
+                                            Gauss3.innerHTML = katex.renderToString('x_{3} = '+l[2].toFixed(0)+';');
+                                        }
+                                }
+                        }
+                        ```
+                    </script>
+                </section>
+
+                <section data-markdown class="center">
+                    <script type="text/template">
+                        ## Метод Якоби
+                    </script>
+                </section>
+
+                <section data-markdown id="fontsize">
+                    <script type="text/template">
+                        ### Метод Якоби
+                        <p>Метод Якоби относится к итерационным способам решения СЛАУ.</p>
+                        <p>Перед тем, как применить итерацию к системе $Ax=b$ необходимо преобразовать ее к виду $x = Bx+d$.</p>
+                        <p>После этого следует выполнить начальное приближение к решению  $x^{(0)} = (x_1^0, x_2^0..., x_m^0)$  и найти последовательность приближений к корню СЛАУ.</p>
+                        <p>Для проверки итераций на сходимость достаточным является условие $\Vert B \Vert \lt 1$.</p>
+                    </script>
+                </section>
+
+                <section data-markdown id="fontsizedelta">
+                    <script type="text/template">
+                        ### Метод Якоби
+                        <p>Сначала из каждого уравнения матрицы $A$ следует выразить неизвестное ($x_1, x_2..., x_n$). В итоге получается матрица $B$. На ее главной диагонали располагаются нулевые элементы. Остальные вычисляются по формуле:</p>
+                        <p>$b_{ij} = −a_{ij}/a_{ii}$</p><p>$i,j = 1, 2..., n$</p>
+                        <p>Компоненты (элементы) вектора $d$ вычисляются по формуле:</p>
+                        <p>$d_i = b_i/a_{ii}$</p><p>$i = 1, 2..., n$</p>
+                        <p>Формула для расчета по методу простой итерации:</p>
+                        <p>$x^{(n+1)} = Bx^{(x)}+d$</p>
+                        <p>Координатная (матричная) запись:</p>
+                        <p>$x_i^{(n+1)} = b_{i_1}x^n_1+b_{i_2}x^{(n)}_2+...+b$</p>
+                    </script>
+                </section>
+
+                <section data-markdown id="fontsize">
+                    <script type="text/template">
+                        ### Метод Якоби
+                        <p>Критерий окончания  итераций в методе Якоби:</p>
+                        <p>$\Vert x^{(n+1)}−x^{(n)}\Vert \lt ε_1$, где $ε_1 = \frac{1−\Vert B \Vert}{\Vert B \Vert}ε$</p>
+                        <p>Если $B \lt  1/2$, можно использовать более простой критерий окончания:</p>
+                        <p>$\Vert x^{(n+1)}−x^{(n)}\Vert \lt ε$</p>
+                    </script>
+                </section>
+
+                <section data-markdown class="center">
+                    <script type="text/template">
+                        ### Пример
+                    </script>
+                </section>
+
+                <section data-markdown id="fontsizedelta">
+                    <script type="text/template">
+                        ### Пример
+                        <p>Решим методом Якоби следующую СЛАУ с показателем точности $ε = 10^{-3}$:</p>
+                        $\begin{cases}\begin{matrix}
+                        10x_1 + x_2 - x_3 = 11\\
+                        \newline
+                        x_1 + 10x_2-x_3 = 10\\
+                        \newline
+                        -x_1 + x_2 + 10x_3 = 10
+                        \end{matrix}\end{cases}$
+                        <p>Прежде всего, следует привести систему уравнений к виду, удобному для итераций:</p>
+                        $\begin{cases}\begin{matrix}
+                        x_1 = -0,1x_2 + 0,1x_3 + 1,1\\
+                        \newline
+                        x_2 = -0,1x_1 + 0,1x_3 + 1\\
+                        \newline
+                        x_3 = 0,1x_1 - 0,1x_2 + 1
+                        \end{matrix}\end{cases}$
+                        <p>Начальное приближение (вектор правой части) выглядит так: </p>
+                        <p>$x^{(0)} = \left(\begin{matrix}1,1\\1\\1\end{matrix}\right)$</p>
+                    </script>
+                </section>
+
+                <section data-markdown id="fontsizedelta">
+                    <script type="text/template">
+                        ### Пример
+                        <p>Вычислим первую итерацию:</p>
+                        <p>$x_1^{(1)} = -0,1 \cdot 1 + 0,1 \cdot 1 + 1,1 = 1,1\\x_2^{(1)} = -0,1 \cdot 1,1 + 0,1 + 1 = 0,99\\x_3^{(1)} = 0,1 \cdot 1,1 - 0,1 \cdot 1 + 1=1,01$</p>
+                        <p>Приближения к решению вычислим аналогично:</p>
+                        <p>$x^{(2)} = \left(\begin{matrix}1,102\\0,991\\1,011\end{matrix}\right), x^{(3)} = \left(\begin{matrix}1,102\\0,9909\\1,0111\end{matrix}\right), x^{(4)} = \left(\begin{matrix}1,10202\\0,99091\\1,01111\end{matrix}\right), $</p>
+                        <p>Выразим норму матрицы $B$ исходя из сумм модулей элементов каждой строки:</p>
+                        <p>$\Vert B \Vert_∞ = 0,2$</p>
+                        <p>Поскольку $0,2 \lt 1/2$, можно применить простой критерий окончания итерации:</p>
+                        <p>$\Vert x^{(n+1)} - x^{(n)}\Vert \lt ε$</p>
+                    </script>
+                </section>
+
+                <section data-markdown id="fontsize">
+                    <script type="text/template">
+                        ### Пример
+                        <p>Определим нормы разности векторов:</p>
+                        <p>$\Vert x^{(3)} - x^{(2)}\Vert_∞ = 0,002, \Vert x^{(4)} - x^{(3)}\Vert_∞ = 0,00002$</p>
+                        <p>Найдя, что $\Vert x^{(4)} - x^{(3)}\Vert_∞ \lt ε$, мы можем сказать, что  на 4-ой итерации достигнута заданная точность.</p>
+                        <br>
+                        <p><b>Ответ:</b> $x_1 = 1,102; x_2 = 0,991; x_3 = 1,101$</p>
+                    </script>
+                </section>
+
+                <section data-markdown id="fontsize">
+                    <script type="text/template">
+                    ### Решение СЛАУ с тремя неизвестными методом Якоби
+                    <p>Показатель точности $\varepsilon = 10^{-3}$</p>
+                    <label>Введите коэффициенты матрицы A</label><br>
+                    <input id="e11" value="0"><input id="e12" value="0"><input id="e13" value="0"><br>
+                    <input id="e21" value="0"><input id="e22" value="0"><input id="e23" value="0"><br>
+                    <input id="e31" value="0"><input id="e32" value="0"><input id="e33" value="0"><br>
+                    <label>Введите коэффициенты матрицы B</label><br>
+                    <input id="f1" value="0"><br><input id="f2" value="0"><br><input id="f3" value="0"><br>
+                    <input type="button" id="butJacobi" value="Посчитать"><br>
+                    <label for ="Jacobi"><br><b>Ответ:</b></label>
+                    <output type="text" name="Jacobi1" id="Jacobi1"></output>
+                        <output type="text" name="Jacobi2" id="Jacobi2"></output>
+                        <output type="text" name="Jacobi3" id="Jacobi3"></output>
+                    </script>
+                </section>
+
+                <section data-markdown class="center">
+                    <script type="text/template">
+                        #### Код программы
+                        ```
+                        window.onload = () => {
+                        document.querySelector('#butJacobi').onclick = () => {
+                            let e11 = document.querySelector("#e11");
+                            let e12 = document.querySelector("#e12");
+                            let e13 = document.querySelector("#e13");
+                            let e21 = document.querySelector("#e21");
+                            let e22 = document.querySelector("#e22");
+                            let e23 = document.querySelector("#e23");
+                            let e31 = document.querySelector("#e31");
+                            let e32 = document.querySelector("#e32");
+                            let e33 = document.querySelector("#e33");
+                            let f1 = document.querySelector("#f1");
+                            let f2 = document.querySelector("#f2");
+                            let f3 = document.querySelector("#f3");
+                            
+                            let Jacobi1 = document.querySelector('#Jacobi1');
+                            let Jacobi2 = document.querySelector('#Jacobi2');
+                            let Jacobi3 = document.querySelector('#Jacobi3');
+        
+                            var arr = [
+                                [e11.value, e12.value, e13.value, f1.value],
+                                [e21.value, e22.value, e23.value, f2.value],
+                                [e31.value, e32.value, e33.value, f3.value]];
+                            var eps=0.001;
+                            var p0 = 0, p1 = 0, p2 = 0, p3 = 0;
+                            var r0 = 0, r1 = 0, r2 = 0, r3 = 0;
+                            var s0 = 0, s1 = 0, s2 = 0, s3 = 0;
+                            var t0 = 0, t1 = 0, t2 = 0, t3 = 0;
+         
+                            s1 = arr[0][3]/arr[0][0];
+                            s2 = arr[1][3]/arr[1][1];
+                            s3 = arr[2][3]/arr[2][2];
+                            t1 = s1;
+                            t2 = s2;
+                            t3 = s3;
+         
+                            for(j = 0; j < 100; j++) {
+                                p1 = -(arr[0][1]/arr[0][0]*s2)-(arr[0][2]/arr[0][0]*s3)+t1;
+                                p2 = -(arr[1][0]/arr[1][1]*s1)-(arr[1][2]/arr[1][1]*s3)+t2;
+                                p3 = -(arr[2][0]/arr[2][2]*s1)-(arr[2][1]/arr[2][2]*s2)+t3;
+                                r1 = p1 - s1; s1 = p1;
+                                r2 = p2 - s2; s2 = p2;
+                                r3 = p3 - s3; s3 = p3;1
+                                if(Math.abs(r3) <= eps){
+                                    Jacobi1.innerHTML = katex.renderToString('x_{1} = '+p1.toFixed(5)+', ε_1 = '+r1.toFixed(5)+';');
+                                    Jacobi2.innerHTML = katex.renderToString('x_{2} = '+p2.toFixed(5)+', ε_2 = '+r2.toFixed(5)+';');
+                                    Jacobi3.innerHTML = katex.renderToString('x_{3} = '+p3.toFixed(5)+', ε_3 = '+r3.toFixed(5)+';');
+                                    break;
+                                    }
+                                    else {
+                                        Jacobi1.innerHTML = ('Не выполняется условие сходимости СЛАУ');
+                                        }
+                            }
+                        }
+                    }
+                        ```
+                    </script>
+                </section>
+
+                <section data-markdown class="center">
+                    <script type="text/template">
+                        <img src="me when 1.jpg"><img src="me when 2.jpg" width="400" height="295">
+                        <p id="small-text">я, когда вижу ошибки в коде в f12</p>
+                    </script>
+                </section>
+
+                <section data-markdown class="center">
+                    <script type="text/template">
+                        <title>Мем</title>
+                        <img src="i made this myself hehe.jpg">
+                    </script>
+                </section>
+
+                <section data-markdown class="center">
+                    <script type="text/template">
+                        Спасибо за внимание!
+                        <br>
+                        <p id="small-text">это было очень сложно :< но мне понравилось :></p>
+                    </script>
+                </section>
+
+
+
+			</div>
+		</div>
+
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+        <script src="plugin/math/math.js"></script>
+        <script src="plugin/katex/katex.js"></script>
+
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+                center: false,
+                slideNumber: true,
+                controls: true,
+                dependencies: [
+                    {
+                        src: 'plugin/menu/menu.js'
+                    }
+                ],
+                menu: {
+                    numbers: true,
+                    markers: true,
+                },
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealMath.KaTeX ]
+			});
+		</script>
+
+        <script>
+            window.onload = () => {
+                document.querySelector('#butCramer3').onclick = () => {
+                    let c11 = document.querySelector("#c11");
+                    let c12 = document.querySelector("#c12");
+                    let c13 = document.querySelector("#c13");
+                    let c21 = document.querySelector("#c21");
+                    let c22 = document.querySelector("#c22");
+                    let c23 = document.querySelector("#c23");
+                    let c31 = document.querySelector("#c31");
+                    let c32 = document.querySelector("#c32");
+                    let c33 = document.querySelector("#c33");
+                    let d1 = document.querySelector("#d1");
+                    let d2 = document.querySelector("#d2");
+                    let d3 = document.querySelector("#d3");
+
+                    let Cramer31 = document.querySelector('#Cramer31');
+                    let Cramer32 = document.querySelector('#Cramer32');
+                    let Cramer33 = document.querySelector('#Cramer33');
+
+                    let X1 = (d1.value*c22.value*c33.value+c12.value*c23.value*d3.value+d2.value*c32.value*c13.value-c13.value*c22.value*d3.value-d2.value*c12.value*c33.value-c11.value*c23.value*c32.value) / (c11.value*c22.value*c33.value+c12.value*c23.value*c31.value+c21.value*c32.value*c13.value-c13.value*c22.value*c31.value-c21.value*c12.value*c33.value-c23.value*c32.value*c11.value);
+                    let X2 = (c11.value*d2.value*c33.value+d1.value*c23.value*c31.value+c21.value*d3.value*c13.value-c13.value*d2.value*c31.value-c21.value*d1.value*c33.value-c23.value*d3.value*c11.value) / (c11.value*c22.value*c33.value+c12.value*c23.value*c31.value+c21.value*c32.value*c13.value-c13.value*c22.value*c31.value-c21.value*c12.value*c33.value-c23.value*c32.value*c11.value);
+                    let X3 = (c11.value*c22.value*d3.value+c12.value*d2.value*c31.value+c21.value*c32.value*d1.value-d1.value*c22.value*c31.value-c21.value*c12.value*d3.value-c32.value*d2.value*c11.value) / (c11.value*c22.value*c33.value+c12.value*c23.value*c31.value+c21.value*c32.value*c13.value-c13.value*c22.value*c31.value-c21.value*c12.value*c33.value-c23.value*c32.value*c11.value);
+
+                    Cramer31.innerHTML = katex.renderToString('x_{1} = '+X1.toFixed(0)+';');
+                    Cramer32.innerHTML = katex.renderToString('x_{2} = '+X2.toFixed(0)+';');
+                    Cramer33.innerHTML = katex.renderToString('x_{3} = '+X3.toFixed(0)+';');
+                }
+
+                document.querySelector('#butCramer4').onclick = () => {
+                    let a11 = document.querySelector("#a11");
+                    let a12 = document.querySelector("#a12");
+                    let a13 = document.querySelector("#a13");
+                    let a14 = document.querySelector("#a14");
+                    let a21 = document.querySelector("#a21");
+                    let a22 = document.querySelector("#a22");
+                    let a23 = document.querySelector("#a23");
+                    let a24 = document.querySelector("#a24");
+                    let a31 = document.querySelector("#a31");
+                    let a32 = document.querySelector("#a32");
+                    let a33 = document.querySelector("#a33");
+                    let a34 = document.querySelector("#a34");
+                    let a41 = document.querySelector("#a41");
+                    let a42 = document.querySelector("#a42");
+                    let a43 = document.querySelector("#a43");
+                    let a44 = document.querySelector("#a44");
+                    let b1 = document.querySelector("#b1");
+                    let b2 = document.querySelector("#b2");
+                    let b3 = document.querySelector("#b3");
+                    let b4 = document.querySelector("#b4");
+
+                    let Cramer41 = document.querySelector('#Cramer41');
+                    let Cramer42 = document.querySelector('#Cramer42');
+                    let Cramer43 = document.querySelector('#Cramer43');
+                    let Cramer44 = document.querySelector('#Cramer44');
+
+                    let Y1 = (b1.value*(a22.value*a33.value*a44.value+a24.value*a32.value*a43.value+a42.value*a23.value*a34.value-a24.value*a33.value*a42.value-a22.value*a34.value*a43.value-a44.value*a23.value*a32.value)-a12.value*(b2.value*a33.value*a44.value+a24.value*b3.value*a43.value+b4.value*a23.value*a34.value-a24.value*a33.value*b4.value-b2.value*a34.value*a43.value-a44.value*a23.value*b3.value)+a13.value*(b2.value*a32.value*a44.value+a24.value*b3.value*a42.value+b4.value*a22.value*a34.value-a24.value*a32.value*b4.value-b2.value*a34.value*a42.value-a44.value*b3.value*a22.value)-a14.value*(b2.value*a32.value*a43.value+a23.value*b3.value*a42.value+b4.value*a22.value*a33.value-a23.value*a32.value*b4.value-b2.value*a42.value*a33.value-a43.value*b3.value*a22.value)) / (a11.value*(a22.value*a33.value*a44.value+a24.value*a32.value*a43.value+a42.value*a23.value*a34.value-a24.value*a33.value*a42.value-a22.value*a34.value*a43.value-a44.value*a23.value*a32.value)-a12.value*(a21.value*a33.value*a44.value+a24.value*a31.value*a43.value+a41.value*a23.value*a34.value-a24.value*a33.value*a41.value-a21.value*a34.value*a43.value-a44.value*a23.value*a31.value)+a13.value*(a21.value*a32.value*a44.value+a24.value*a31.value*a42.value+a41.value*a22.value*a34.value-a24.value*a32.value*a41.value-a21.value*a34.value*a42.value-a44.value*a22.value*a31.value)-a14.value*(a21.value*a32.value*a43.value+a23.value*a31.value*a42.value+a41.value*a22.value*a33.value-a23.value*a32.value*a41.value-a21.value*a33.value*a42.value-a43.value*a22.value*a31.value));
+                    let Y2 = (a11.value*(b2.value*a33.value*a44.value+a24.value*b3.value*a43.value+b4.value*a23.value*a34.value-a24.value*a33.value*b4.value-b2.value*a34.value*a43.value-a44.value*a23.value*b3.value)-b1.value*(a21.value*a33.value*a44.value+a24.value*a31.value*a43.value+a41.value*a23.value*a34.value-a24.value*a33.value*a41.value-a21.value*a34.value*a43.value-a44.value*a23.value*a31.value)+a13.value*(a21.value*b3.value*a44.value+a24.value*a31.value*b4.value+a41.value*b2.value*a34.value-a24.value*b3.value*a41.value-a21.value*a34.value*b4.value-a44.value*b2.value*a31.value)-a14.value*(a21.value*b3.value*a43.value+a23.value*a31.value*b4.value+a41.value*b2.value*a33.value-a23.value*b3.value*a41.value-a21.value*a33.value*b4.value-a43.value*b2.value*a31.value)) / (a11.value*(a22.value*a33.value*a44.value+a24.value*a32.value*a43.value+a42.value*a23.value*a34.value-a24.value*a33.value*a42.value-a22.value*a34.value*a43.value-a44.value*a23.value*a32.value)-a12.value*(a21.value*a33.value*a44.value+a24.value*a31.value*a43.value+a41.value*a23.value*a34.value-a24.value*a33.value*a41.value-a21.value*a34.value*a43.value-a44.value*a23.value*a31.value)+a13.value*(a21.value*a32.value*a44.value+a24.value*a31.value*a42.value+a41.value*a22.value*a34.value-a24.value*a32.value*a41.value-a21.value*a34.value*a42.value-a44.value*a22.value*a31.value)-a14.value*(a21.value*a32.value*a43.value+a23.value*a31.value*a42.value+a41.value*a22.value*a33.value-a23.value*a32.value*a41.value-a21.value*a33.value*a42.value-a43.value*a22.value*a31.value));
+                    let Y3 = (a11.value*(a22.value*b3.value*a44.value+a24.value*a32.value*b4.value+a42.value*b2.value*a34.value-a24.value*b3.value*a42.value-a22.value*a34.value*b4.value-a44.value*b2.value*a32.value)-a12.value*(a21.value*b3.value*a44.value+a24.value*a31.value*b4.value+a41.value*b2.value*a34.value-a24.value*b3.value*a41.value-a21.value*a34.value*b4.value-a44.value*b2.value*a31.value)+b1.value*(a21.value*a32.value*a44.value+a24.value*a31.value*a42.value+a41.value*a22.value*a34.value-a24.value*a32.value*a41.value-a21.value*a34.value*a42.value-a44.value*a22.value*a31.value)-a14.value*(a21.value*a32.value*b4.value+b2.value*a31.value*a42.value+a41.value*a22.value*b3.value-b2.value*a32.value*a41.value-a21.value*b3.value*a42.value-b4.value*a22.value*a31.value)) / (a11.value*(a22.value*a33.value*a44.value+a24.value*a32.value*a43.value+a42.value*a23.value*a34.value-a24.value*a33.value*a42.value-a22.value*a34.value*a43.value-a44.value*a23.value*a32.value)-a12.value*(a21.value*a33.value*a44.value+a24.value*a31.value*a43.value+a41.value*a23.value*a34.value-a24.value*a33.value*a41.value-a21.value*a34.value*a43.value-a44.value*a23.value*a31.value)+a13.value*(a21.value*a32.value*a44.value+a24.value*a31.value*a42.value+a41.value*a22.value*a34.value-a24.value*a32.value*a41.value-a21.value*a34.value*a42.value-a44.value*a22.value*a31.value)-a14.value*(a21.value*a32.value*a43.value+a23.value*a31.value*a42.value+a41.value*a22.value*a33.value-a23.value*a32.value*a41.value-a21.value*a33.value*a42.value-a43.value*a22.value*a31.value));
+                    let Y4 = (a11.value*(a22.value*a33.value*b4.value+b2.value*a32.value*a43.value+a42.value*a23.value*b3.value-b2.value*a33.value*a42.value-a22.value*b3.value*a43.value-b4.value*a23.value*a32.value)-a12.value*(a21.value*a33.value*b4.value+b2.value*a31.value*a43.value+a41.value*a23.value*b3.value-b2.value*a33.value*a41.value-a21.value*b3.value*a43.value-b4.value*a23.value*a31.value)+a13.value*(a21.value*a32.value*b4.value+b2.value*a31.value*a42.value+a41.value*a22.value*b3.value-b2.value*a32.value*a41.value-a21.value*b3.value*a42.value-b4.value*a22.value*a31.value)-b1.value*(a21.value*a32.value*a43.value+a23.value*a31.value*a42.value+a41.value*a22.value*a33.value-a23.value*a32.value*a41.value-a21.value*a33.value*a42.value-a43.value*a22.value*a31.value)) / (a11.value*(a22.value*a33.value*a44.value+a24.value*a32.value*a43.value+a42.value*a23.value*a34.value-a24.value*a33.value*a42.value-a22.value*a34.value*a43.value-a44.value*a23.value*a32.value)-a12.value*(a21.value*a33.value*a44.value+a24.value*a31.value*a43.value+a41.value*a23.value*a34.value-a24.value*a33.value*a41.value-a21.value*a34.value*a43.value-a44.value*a23.value*a31.value)+a13.value*(a21.value*a32.value*a44.value+a24.value*a31.value*a42.value+a41.value*a22.value*a34.value-a24.value*a32.value*a41.value-a21.value*a34.value*a42.value-a44.value*a22.value*a31.value)-a14.value*(a21.value*a32.value*a43.value+a23.value*a31.value*a42.value+a41.value*a22.value*a33.value-a23.value*a32.value*a41.value-a21.value*a33.value*a42.value-a43.value*a22.value*a31.value));
+
+                    Cramer41.innerHTML = katex.renderToString('x_{1} = '+Y1.toFixed(0)+';');
+                    Cramer42.innerHTML = katex.renderToString('x_{2} = '+Y2.toFixed(0)+';');
+                    Cramer43.innerHTML = katex.renderToString('x_{3} = '+Y3.toFixed(0)+';');
+                    Cramer44.innerHTML = katex.renderToString('x_{4} = '+Y4.toFixed(0)+';');
+                }
+
+                document.querySelector('#butJacobi').onclick = () => {
+                    let e11 = document.querySelector("#e11");
+                    let e12 = document.querySelector("#e12");
+                    let e13 = document.querySelector("#e13");
+                    let e21 = document.querySelector("#e21");
+                    let e22 = document.querySelector("#e22");
+                    let e23 = document.querySelector("#e23");
+                    let e31 = document.querySelector("#e31");
+                    let e32 = document.querySelector("#e32");
+                    let e33 = document.querySelector("#e33");
+                    let f1 = document.querySelector("#f1");
+                    let f2 = document.querySelector("#f2");
+                    let f3 = document.querySelector("#f3");
+                    
+                    let Jacobi1 = document.querySelector('#Jacobi1');
+                    let Jacobi2 = document.querySelector('#Jacobi2');
+                    let Jacobi3 = document.querySelector('#Jacobi3');
+
+                    var arr = [
+                        [e11.value, e12.value, e13.value, f1.value],
+                        [e21.value, e22.value, e23.value, f2.value],
+                        [e31.value, e32.value, e33.value, f3.value]];
+                    var eps=0.001;
+                    var p0 = 0, p1 = 0, p2 = 0, p3 = 0;
+                    var r0 = 0, r1 = 0, r2 = 0, r3 = 0;
+                    var s0 = 0, s1 = 0, s2 = 0, s3 = 0;
+                    var t0 = 0, t1 = 0, t2 = 0, t3 = 0;
+ 
+                    s1 = arr[0][3]/arr[0][0];
+                    s2 = arr[1][3]/arr[1][1];
+                    s3 = arr[2][3]/arr[2][2];
+                    t1 = s1;
+                    t2 = s2;
+                    t3 = s3;
+ 
+                    for(j = 0; j < 100; j++)
+                    {
+                        p1 = -(arr[0][1]/arr[0][0]*s2)-(arr[0][2]/arr[0][0]*s3)+t1;
+                        p2 = -(arr[1][0]/arr[1][1]*s1)-(arr[1][2]/arr[1][1]*s3)+t2;
+                        p3 = -(arr[2][0]/arr[2][2]*s1)-(arr[2][1]/arr[2][2]*s2)+t3;
+                        r1 = p1 - s1; s1 = p1;
+                        r2 = p2 - s2; s2 = p2;
+                        r3 = p3 - s3; s3 = p3;1
+                        if(Math.abs(r3) <= eps){
+                        Jacobi1.innerHTML = katex.renderToString('x_{1} = '+p1.toFixed(5)+', ε_1 = '+r1.toFixed(5)+';');
+                        Jacobi2.innerHTML = katex.renderToString('x_{2} = '+p2.toFixed(5)+', ε_2 = '+r2.toFixed(5)+';');
+                        Jacobi3.innerHTML = katex.renderToString('x_{3} = '+p3.toFixed(5)+', ε_3 = '+r3.toFixed(5)+';');
+                        break;
+                        }
+                        else {
+                            Jacobi1.innerHTML = ('Не выполняется условие сходимости СЛАУ');
+                            }
+                    }
+                }
+
+                document.querySelector('#butGauss').onclick = () => {
+
+                    let g11 = document.querySelector("#g11");
+                    let g12 = document.querySelector("#g12");
+                    let g13 = document.querySelector("#g13");
+                    let g21 = document.querySelector("#g21");
+                    let g22 = document.querySelector("#g22");
+                    let g23 = document.querySelector("#g23");
+                    let g31 = document.querySelector("#g31");
+                    let g32 = document.querySelector("#g32");
+                    let g33 = document.querySelector("#g33");
+                    let h1 = document.querySelector("#h1");
+                    let h2 = document.querySelector("#h2");
+                    let h3 = document.querySelector("#h3");
+                    
+                    let Gauss1 = document.querySelector('#Gauss1');
+                    let Gauss2 = document.querySelector('#Gauss2');
+                    let Gauss3 = document.querySelector('#Gauss3');
+
+                    n=3;
+                    var m=new Array(n);
+                    var l=new Array(n);
+                    var i, j, k;
+                    for(i=0; i<n; ++i)
+                    {
+                        m[i] = new Array(3);
+                        l[i] = new Array(3);
+                    }
+                    
+                    m = [[g11.value, g12.value,g13.value, h1.value],[g21.value, g22.value, g23.value, h2.value],[g31.value, g32.value, g33.value, h3.value]];
+
+                    for(iter_item = 0; iter_item < (n-1); iter_item++)
+                    {
+                        if (m[iter_item][iter_item] == 0)
+                        {
+                            for(i = iter_item + 1; i < n; i++)
+                            {
+                                if(m[i][iter_item] !== 0)
+                                    {
+                                        for(j = 0; j <= n; j++)
+                                            {
+                                                k = m[i-1][j];
+                                                m[i-1][j] = m[i][j];
+                                                m[i][j] = k;
+                                            }
+                                    } 
+                            }
+                        }
+                        for(j = n; j >= iter_item; j--)
+                        {
+                            m[iter_item][j] /= m[iter_item][iter_item];
+                        }
+                        for(i = iter_item + 1; i < n; i++)
+                        {
+                            for(j = n; j >= iter_item; j--)
+                                {
+                                    m[i][j] -= m[iter_item][j] * m[i][iter_item];
+                                }
+                        }
+                    }
+
+                    for(i = iter_item + 1; i < n; i++)
+                    {
+                        if(m[i][iter_item] !== 0)
+                        {
+                            for(j = 0; j <= n; j++)
+                                {
+                                    k = m[i-1][j];
+                                    m[i-1][j] = m[i][j];
+                                    m[i][j] = k;
+                                }
+                        } 
+                    }
+                    l[n-1] = m[n-1][n]/m[n-1][n-1];
+                    for(i = n - 2; i >= 0; i--)
+                        {
+                            k=0;
+                            for(j = n - 1; j > i; j--)
+                                {
+                                    k = (m[i][j]*l[j]) + k;
+                                }
+                            l[i] = m[i][n] - k;
+                        }
+                    for(i = n; i > 0; i--)
+                        {
+                            Gauss1.innerHTML = katex.renderToString('x_{1} = '+l[0].toFixed(0)+';');
+                            Gauss2.innerHTML = katex.renderToString('x_{2} = '+l[1].toFixed(0)+';');
+                            Gauss3.innerHTML = katex.renderToString('x_{3} = '+l[2].toFixed(0)+';');
+                        }
+                }
+            }
+        </script>
+	</body>
+</html>
