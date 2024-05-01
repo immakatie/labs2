@@ -46,15 +46,15 @@
                 width: 20%; height: 60%; background-color: aliceblue; font-size: 15pt;
             }
 
-            #fontsize
-        {
-            font-size: 70%;
-        }
+            .fontsize
+            {
+                font-size: 70%;
+            }
 
-            #fontsizedelta
-        {
-            font-size: 55%;
-        }
+            .fontsizedelta
+            {
+                font-size: 55%;
+            }
 
         </style>
 	</head>
@@ -108,7 +108,7 @@
                     </script>
                 </section>
 
-                <section data-markdown id="fontsize">
+                <section data-markdown>
                     <script type="text/template">
                         ### Метод Крамера
                         Алгоритм решения СЛАУ методом Крамера:
@@ -126,7 +126,7 @@
                     </script>
                 </section>
 
-                <section data-markdown id="fontsize">
+                <section data-markdown class="center" class="fontsize">
                     <script type="text/template">
                         ### Пример
                         $$
@@ -260,7 +260,7 @@
                     </script>
                 </section>
 
-                <section data-markdown id="fontsize">
+                <section data-markdown class="center" class="fontsize">
                     <script type="text/template">
                         ### Решение СЛАУ методом Крамера
                         <label>Введите коэффициенты матрицы A</label><br>
@@ -335,7 +335,7 @@
                     </script>
                 </section>
 
-                <section data-markdown id="fontsize">
+                <section data-markdown class="fontsize">
                     <script type="text/template">
                         ### Метод Гаусса
                         <p>Преобразование с помощью метода Гаусса заключается в совершении небольших (элементарных) последовательных изменениях системы линейных алгебраических уравнений, приводящих к исключению переменных из неё сверху вниз с образованием новой треугольной системы уравнений, являющейся равносильной исходной.</p>
@@ -343,7 +343,7 @@
                     </script>
                 </section>
 
-                <section data-markdown id="fontsize">
+                <section data-markdown class="fontsize">
                     <script type="text/template">
                         ### Метод Гаусса
                         <p>После приведения исходной системы уравнений к треугольной осуществляется нахождение всех переменных системы снизу вверх (то есть первые найденные переменные находятся именно на последних строчках системы или матрицы).</p>
@@ -352,7 +352,7 @@
                     </script>
                 </section>
 
-                <section data-markdown id="fontsize">
+                <section data-markdown class="fontsize">
                     <script type="text/template">
                         ### Метод Гаусса
                         <p>Последовательность действий для общего решения системы уравнения методом Гаусса заключается в поочередном применении прямого и обратного хода к матрице на основе СЛАУ.
@@ -361,7 +361,7 @@
                     </script>
                 </section>
 
-                <section data-markdown id="fontsizedelta">
+                <section data-markdown class="fontsizedelta">
                     <script type="text/template">
                         ## Метод Гаусса
                         <p>Чтобы решить СЛАУ методом Гаусса, необходимо записать исходную систему уравнений в виде матрицы:</p>
@@ -371,7 +371,7 @@
                     </script>
                 </section>
 
-                <section data-markdown id="fontsizedelta">
+                <section data-markdown class="fontsizedelta">
                     <script type="text/template">
                         ## Метод Гаусса
                         <p>Теперь необходимо с помощью элементарных преобразований над системой уравнений (или над матрицей, так как это удобнее) привести её к следующему виду:</p>
@@ -387,7 +387,7 @@
                     </script>
                 </section>
 
-                <section data-markdown id="fontsize">
+                <section data-markdown class="fontsize">
                     <script type="text/template">
                         ### Пример
                         $\begin{cases}
@@ -404,7 +404,7 @@
                     </script>
                 </section>
 
-                <section data-markdown id="fontsizedelta">
+                <section data-markdown class="fontsizedelta">
                     <script type="text/template">
                         ## Пример
                         <p>Для этого к 1-ой строчке прибавляем строчку из середины, умноженную на $-1$, а саму среднюю строчку записываем как есть, выходит:</p>
@@ -414,7 +414,7 @@
                     </script>
                 </section>
 
-                <section data-markdown id="fontsizedelta">
+                <section data-markdown class="fontsizedelta">
                     <script type="text/template">
                         ### Пример
                         <p>Домножим верхнюю и последнюю строчки на $-1$, а также поменяем местами последнюю и среднюю строки:</p>
@@ -426,7 +426,7 @@
                     </script>
                 </section>
 
-                <section data-markdown id="fontsize">
+                <section data-markdown class="fontsize">
                     <script type="text/template">
                         ### Пример
                         <p>Получаем следующую систему уравнений, равносильную исходной:</p>
@@ -437,7 +437,7 @@
                     </script>
                 </section>
 
-                <section data-markdown id="fontsize">
+                <section data-markdown class="fontsize">
                     <script type="text/template">
                     ### Решение СЛАУ с тремя неизвестными методом Гаусса
                     <label>Введите коэффициенты матрицы A</label><br>
@@ -559,7 +559,7 @@
                     </script>
                 </section>
 
-                <section data-markdown id="fontsize">
+                <section data-markdown class="fontsize">
                     <script type="text/template">
                         ### Метод Якоби
                         <p>Метод Якоби относится к итерационным способам решения СЛАУ.</p>
@@ -569,7 +569,7 @@
                     </script>
                 </section>
 
-                <section data-markdown id="fontsizedelta">
+                <section data-markdown class="fontsizedelta">
                     <script type="text/template">
                         ### Метод Якоби
                         <p>Сначала из каждого уравнения матрицы $A$ следует выразить неизвестное ($x_1, x_2..., x_n$). В итоге получается матрица $B$. На ее главной диагонали располагаются нулевые элементы. Остальные вычисляются по формуле:</p>
@@ -583,7 +583,7 @@
                     </script>
                 </section>
 
-                <section data-markdown id="fontsize">
+                <section data-markdown class="fontsize">
                     <script type="text/template">
                         ### Метод Якоби
                         <p>Критерий окончания  итераций в методе Якоби:</p>
@@ -599,7 +599,7 @@
                     </script>
                 </section>
 
-                <section data-markdown id="fontsizedelta">
+                <section data-markdown class="fontsizedelta">
                     <script type="text/template">
                         ### Пример
                         <p>Решим методом Якоби следующую СЛАУ с показателем точности $ε = 10^{-3}$:</p>
@@ -623,7 +623,7 @@
                     </script>
                 </section>
 
-                <section data-markdown id="fontsizedelta">
+                <section data-markdown class="fontsizedelta">
                     <script type="text/template">
                         ### Пример
                         <p>Вычислим первую итерацию:</p>
@@ -637,7 +637,7 @@
                     </script>
                 </section>
 
-                <section data-markdown id="fontsize">
+                <section data-markdown class="fontsize">
                     <script type="text/template">
                         ### Пример
                         <p>Определим нормы разности векторов:</p>
@@ -648,7 +648,7 @@
                     </script>
                 </section>
 
-                <section data-markdown id="fontsize">
+                <section data-markdown class="fontsize">
                     <script type="text/template">
                     ### Решение СЛАУ с тремя неизвестными методом Якоби
                     <p>Показатель точности $\varepsilon = 10^{-3}$</p>
