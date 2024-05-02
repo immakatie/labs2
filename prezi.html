@@ -250,9 +250,9 @@
                                 let X2 = (c11.value*d2.value*c33.value+d1.value*c23.value*c31.value+c21.value*d3.value*c13.value-c13.value*d2.value*c31.value-c21.value*d1.value*c33.value-c23.value*d3.value*c11.value) / (c11.value*c22.value*c33.value+c12.value*c23.value*c31.value+c21.value*c32.value*c13.value-c13.value*c22.value*c31.value-c21.value*c12.value*c33.value-c23.value*c32.value*c11.value);
                                 let X3 = (c11.value*c22.value*d3.value+c12.value*d2.value*c31.value+c21.value*c32.value*d1.value-d1.value*c22.value*c31.value-c21.value*c12.value*d3.value-c32.value*d2.value*c11.value) / (c11.value*c22.value*c33.value+c12.value*c23.value*c31.value+c21.value*c32.value*c13.value-c13.value*c22.value*c31.value-c21.value*c12.value*c33.value-c23.value*c32.value*c11.value);
             
-                                Cramer31.innerHTML = katex.renderToString('x_{1} = '+X1.toFixed(0)+';');
-                                Cramer32.innerHTML = katex.renderToString('x_{2} = '+X2.toFixed(0)+';');
-                                Cramer33.innerHTML = katex.renderToString('x_{3} = '+X3.toFixed(0)+';');
+                                Cramer31.innerHTML = katex.renderToString('x_{1} = '+X1.toFixed(5)+';');
+                                Cramer32.innerHTML = katex.renderToString('x_{2} = '+X2.toFixed(5)+';');
+                                Cramer33.innerHTML = katex.renderToString('x_{3} = '+X3.toFixed(5)+';');
                             }
                         }
                         ```
@@ -318,10 +318,10 @@
                             let Y3 = (a11.value*(a22.value*b3.value*a44.value+a24.value*a32.value*b4.value+a42.value*b2.value*a34.value-a24.value*b3.value*a42.value-a22.value*a34.value*b4.value-a44.value*b2.value*a32.value)-a12.value*(a21.value*b3.value*a44.value+a24.value*a31.value*b4.value+a41.value*b2.value*a34.value-a24.value*b3.value*a41.value-a21.value*a34.value*b4.value-a44.value*b2.value*a31.value)+b1.value*(a21.value*a32.value*a44.value+a24.value*a31.value*a42.value+a41.value*a22.value*a34.value-a24.value*a32.value*a41.value-a21.value*a34.value*a42.value-a44.value*a22.value*a31.value)-a14.value*(a21.value*a32.value*b4.value+b2.value*a31.value*a42.value+a41.value*a22.value*b3.value-b2.value*a32.value*a41.value-a21.value*b3.value*a42.value-b4.value*a22.value*a31.value)) / (a11.value*(a22.value*a33.value*a44.value+a24.value*a32.value*a43.value+a42.value*a23.value*a34.value-a24.value*a33.value*a42.value-a22.value*a34.value*a43.value-a44.value*a23.value*a32.value)-a12.value*(a21.value*a33.value*a44.value+a24.value*a31.value*a43.value+a41.value*a23.value*a34.value-a24.value*a33.value*a41.value-a21.value*a34.value*a43.value-a44.value*a23.value*a31.value)+a13.value*(a21.value*a32.value*a44.value+a24.value*a31.value*a42.value+a41.value*a22.value*a34.value-a24.value*a32.value*a41.value-a21.value*a34.value*a42.value-a44.value*a22.value*a31.value)-a14.value*(a21.value*a32.value*a43.value+a23.value*a31.value*a42.value+a41.value*a22.value*a33.value-a23.value*a32.value*a41.value-a21.value*a33.value*a42.value-a43.value*a22.value*a31.value));
                             let Y4 = (a11.value*(a22.value*a33.value*b4.value+b2.value*a32.value*a43.value+a42.value*a23.value*b3.value-b2.value*a33.value*a42.value-a22.value*b3.value*a43.value-b4.value*a23.value*a32.value)-a12.value*(a21.value*a33.value*b4.value+b2.value*a31.value*a43.value+a41.value*a23.value*b3.value-b2.value*a33.value*a41.value-a21.value*b3.value*a43.value-b4.value*a23.value*a31.value)+a13.value*(a21.value*a32.value*b4.value+b2.value*a31.value*a42.value+a41.value*a22.value*b3.value-b2.value*a32.value*a41.value-a21.value*b3.value*a42.value-b4.value*a22.value*a31.value)-b1.value*(a21.value*a32.value*a43.value+a23.value*a31.value*a42.value+a41.value*a22.value*a33.value-a23.value*a32.value*a41.value-a21.value*a33.value*a42.value-a43.value*a22.value*a31.value)) / (a11.value*(a22.value*a33.value*a44.value+a24.value*a32.value*a43.value+a42.value*a23.value*a34.value-a24.value*a33.value*a42.value-a22.value*a34.value*a43.value-a44.value*a23.value*a32.value)-a12.value*(a21.value*a33.value*a44.value+a24.value*a31.value*a43.value+a41.value*a23.value*a34.value-a24.value*a33.value*a41.value-a21.value*a34.value*a43.value-a44.value*a23.value*a31.value)+a13.value*(a21.value*a32.value*a44.value+a24.value*a31.value*a42.value+a41.value*a22.value*a34.value-a24.value*a32.value*a41.value-a21.value*a34.value*a42.value-a44.value*a22.value*a31.value)-a14.value*(a21.value*a32.value*a43.value+a23.value*a31.value*a42.value+a41.value*a22.value*a33.value-a23.value*a32.value*a41.value-a21.value*a33.value*a42.value-a43.value*a22.value*a31.value));
         
-                            Cramer41.innerHTML = katex.renderToString('x_{1} = '+Y1.toFixed(0)+';');
-                            Cramer42.innerHTML = katex.renderToString('x_{2} = '+Y2.toFixed(0)+';');
-                            Cramer43.innerHTML = katex.renderToString('x_{3} = '+Y3.toFixed(0)+';');
-                            Cramer44.innerHTML = katex.renderToString('x_{4} = '+Y4.toFixed(0)+';');
+                            Cramer41.innerHTML = katex.renderToString('x_{1} = '+Y1.toFixed(5)+';');
+                            Cramer42.innerHTML = katex.renderToString('x_{2} = '+Y2.toFixed(5)+';');
+                            Cramer43.innerHTML = katex.renderToString('x_{3} = '+Y3.toFixed(5)+';');
+                            Cramer44.innerHTML = katex.renderToString('x_{4} = '+Y4.toFixed(5)+';');
                         }
                     }
                         ```
@@ -587,9 +587,9 @@
                     <script type="text/template">
                         ### Метод Якоби
                         <p>Критерий окончания  итераций в методе Якоби:</p>
-                        <p>$\Vert x^{(n+1)}−x^{(n)}\Vert \lt ε_1$, где $ε_1 = \frac{1−\Vert B \Vert}{\Vert B \Vert}ε$</p>
+                        <p>$\Vert x^{(n+1)} - x^{(n)}\Vert \lt ε_1$, где $ε_1 = \frac{1 - \Vert B \Vert}{\Vert B \Vert}ε$</p>
                         <p>Если $B \lt  1/2$, можно использовать более простой критерий окончания:</p>
-                        <p>$\Vert x^{(n+1)}−x^{(n)}\Vert \lt ε$</p>
+                        <p>$\Vert x^{(n+1)} - x^{(n)}\Vert \lt ε$</p>
                     </script>
                 </section>
 
@@ -612,7 +612,7 @@
                         \end{matrix}\end{cases}$
                         <p>Прежде всего, следует привести систему уравнений к виду, удобному для итераций:</p>
                         $\begin{cases}\begin{matrix}
-                        x_1 = -0.1x_2 + 0.1x_3 + 1,1\\
+                        x_1 = -0.1x_2 + 0.1x_3 + 1.1\\
                         \newline
                         x_2 = -0.1x_1 + 0.1x_3 + 1\\
                         \newline
